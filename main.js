@@ -7,15 +7,12 @@ async function Start(event) {
     clearInterval(intervalId);
   }
 
-  intervalId = setInterval(() => {
-    const formData = new FormData(document.getElementById('dataForm'));
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
-    });
-
-    console.log(formDataObject);
-  }, 100);
+  const formData = new FormData(document.getElementById('dataForm'));
+  const formDataObject = {};
+  formData.forEach((value, key) => {
+    formDataObject[key] = value;
+  });
+  console.log(formDataObject);
 }
 
 async function Stop() {
@@ -24,10 +21,4 @@ async function Stop() {
   }
 }
 
-async function Stop() {
-  if (intervalId) {
-    clearInterval(intervalId);
-    intervalId = null;
-    console.log('Data submission stopped');
-  }
-}
+async function Stop() {}
