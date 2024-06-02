@@ -13,11 +13,19 @@ async function Start(event) {
     formDataObject[key] = value;
   });
   console.log(formDataObject);
-}
-
-async function Stop() {
-  if (intervalId) {
-    clearInterval(intervalId);
+  try {
+    const response = await axios.post(
+      'http://localhost:4001/bot/checkout',
+      formDataObject,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    console.log(response);
+  } catch (error) {
+    console.error('Error:', error);
   }
 }
 
