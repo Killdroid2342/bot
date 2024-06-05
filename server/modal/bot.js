@@ -1,11 +1,10 @@
 const puppeteer = require('puppeteer');
 
-const rand_url = 'https://uk.supreme.com/products/8zzvkdc_5bft5tww';
-
-async function initBrowser() {
+async function initBrowser(url) {
+  console.log(url, 'inside func');
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  await page.goto(rand_url, { waitUntil: 'networkidle2' });
+  await page.goto(url, { waitUntil: 'networkidle2' });
   return page;
 }
 
@@ -41,91 +40,105 @@ async function AddToCart(page) {
     console.log(e);
   }
 }
-async function DeliveryPayment(page) {
+
+async function DeliveryPayment(page, body) {
   try {
+    const {
+      Email,
+      FirstName,
+      SecondName,
+      Address,
+      City,
+      Postcode,
+      CardNumber,
+      PhoneNumber,
+      CVV,
+      Expiry,
+      Name,
+    } = body;
+
     const navigationPromise = page.waitForNavigation({
       waitUntil: ['load', 'networkidle2'],
     });
     await navigationPromise;
-    // await page.evaluate(() => {
-    //   return new Promise((resolve) => {
-    //     setTimeout(resolve, 300);
-    //   });
-    // });
-    await page.type("input[id='email']", 'testUser123@gmail.com');
+
+    await page.type("input[id='email']", Email);
     console.log('input typed');
 
-    await page.type("input[id='TextField0']", 'John oneil');
+    await page.type("input[id='TextField0']", FirstName);
     console.log('input typed2');
 
-    await page.type("input[id='TextField1']", 'Connor');
+    await page.type("input[id='TextField1']", SecondName);
     console.log('input typed3');
 
-    await page.type("input[id='shipping-address1']", '265 stoke road');
+    await page.type("input[id='shipping-address1']", Address);
     console.log('input typed4');
 
-    await page.type("input[id='TextField3']", 'slough');
+    await page.type("input[id='TextField3']", City);
     console.log('input typed5');
 
-    await page.type("input[id='TextField4']", 'sl2 5ax');
+    await page.type("input[id='TextField4']", Postcode);
     console.log('input typed6');
 
-    await page.type("input[id='TextField5']", '07377 735412');
+    await page.type("input[id='TextField5']", PhoneNumber);
     console.log('input typed7');
-    // await page.$eval(
-    //   'input[type="checkbox"]#accept-tos-checkbox._1mmswk96._1fragemr1._1fragemqz._1fragemr3._1fragemqx._1fragemrx._1fragemrt._1fragems1._1fragemrp._1fragemby._1fragemb9._1fragemcn._1fragemak._1fragempr._1fragem2i._1fragemqm._1fragem2d._1fragemv9._1fragemv3._1fragemvf._1fragempi._1fragemvq',
-    //   (e) => e.click()
-    // );
-    // console.log('clicked checkbox');
-    // await page.$eval(
-    //   'input[type="checkbox"]#save_shipping_information._1mmswk96._1fragemr1._1fragemqz._1fragemr3._1fragemqx._1fragemrx._1fragemrt._1fragems1._1fragemrp._1fragemby._1fragemb9._1fragemcn._1fragemak._1fragempr._1fragem2i._1fragemqm._1fragem2d._1fragemv9._1fragemv3._1fragemvf._1fragempi._1fragemvq',
-    //   (e) => e.click()
-    // );
-    // console.log('clicked checkbox');
-    // await page.evaluate(() => {
-    //   return new Promise((resolve) => {
-    //     setTimeout(resolve, 50);
-    //   });
-    // });
-    // await page.type('#number', '5186150310000003');
-    // await page.evaluate(() => {
-    //   return new Promise((resolve) => {
-    //     setTimeout(resolve, 50);
-    //   });
-    // });
-    // await page.type('#expiry', '00126');
-    // await page.evaluate(() => {
-    //   return new Promise((resolve) => {
-    //     setTimeout(resolve, 50);
-    //   });
-    // });
-    // await page.type('#verification_value', '0333');
-    // await page.evaluate(() => {
-    //   return new Promise((resolve) => {
-    //     setTimeout(resolve, 50);
-    //   });
-    // });
-    // await page.type('#name', ' MR THING BOB');
-    // await page.evaluate(() => {
-    //   return new Promise((resolve) => {
-    //     setTimeout(resolve, 50);
-    //   });
-    // });
-    // await page.$eval(
-    //   'button#checkout-pay-button.QT4by._1fragempl.rqC98._1m2hr9gc._1m2hr9ga._7QHNJ.VDIfJ.j6D1f.janiy',
-    //   (e) => e.click()
-    // );
-    // console.log('process payment');
+
+    await page.evaluate(() => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
+    });
+    await page.type('#number', CardNumber);
+    await page.evaluate(() => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
+    });
+    await page.type('#expiry', Expiry);
+    await page.evaluate(() => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
+    });
+    await page.type('#verification_value', CVV);
+    await page.evaluate(() => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
+    });
+    await page.type('#name', Name);
+    await page.evaluate(() => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
+    });
+
+    // fix checkbox
+    await page.$eval(
+      'input[type="checkbox"]#accept-tos-checkbox._1mmswk96._1fragemr1._1fragemqz._1fragemr3._1fragemqx._1fragemrx._1fragemrt._1fragems1._1fragemrp._1fragemby._1fragemb9._1fragemcn._1fragemak._1fragempr._1fragem2i._1fragemqm._1fragem2d._1fragemv9._1fragemv3._1fragemvf._1fragempi._1fragemvq',
+      (e) => e.click()
+    );
+    console.log('clicked checkbox');
+    await page.$eval(
+      'input[type="checkbox"]#save_shipping_information._1mmswk96._1fragemr1._1fragemqz._1fragemr3._1fragemqx._1fragemrx._1fragemrt._1fragems1._1fragemrp._1fragemby._1fragemb9._1fragemcn._1fragemak._1fragempr._1fragem2i._1fragemqm._1fragem2d._1fragemv9._1fragemv3._1fragemvf._1fragempi._1fragemvq',
+      (e) => e.click()
+    );
+    console.log('clicked checkbox');
+    await page.$eval(
+      'button#checkout-pay-button.QT4by._1fragempl.rqC98._1m2hr9gc._1m2hr9ga._7QHNJ.VDIfJ.j6D1f.janiy',
+      (e) => e.click()
+    );
+    console.log('process payment');
   } catch (e) {
     console.log(e);
   }
 }
 
-async function checkout() {
-  const page = await initBrowser();
+async function checkout(body) {
+  const { ItemLink } = body;
+  const page = await initBrowser(ItemLink);
   await AddToCart(page);
-  await DeliveryPayment(page);
+  await DeliveryPayment(page, body);
 }
 
-// checkout();
 module.exports = { checkout };
