@@ -6,8 +6,7 @@ const { checkout } = require('../modal/bot');
 router.use(bodyParser.json());
 
 router.post('/checkout', async (req, res) => {
-  console.log(res);
-  await checkout();
+  await checkout(req.body);
   res.send('Checkout process completed');
 });
 
