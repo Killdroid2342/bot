@@ -1,10 +1,11 @@
 body {
   background-color: rgba(28, 29, 31, 255);
+  font-family: Verdana;
 }
 .head {
   color: #f3f3f4;
   font-size: 50px;
-  font-family: Arial, Helvetica, sans-serif;
+
   text-align: center;
 }
 #dataForm {
@@ -13,7 +14,11 @@ body {
   border: 1px solid #f3f3f4;
   padding: 20px;
   border-radius: 40px;
+  overflow-y: scroll;
+  height: 700px;
+  scrollbar-width: none;
 }
+
 .inputs {
   padding: 15px;
   border-radius: 5px;
@@ -21,4 +26,15 @@ body {
   background-color: transparent;
   border: 1px solid #f3f3f4;
   color: #f3f3f4;
+}
+.buttons {
+  padding: 20px;
+  margin: 5px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid #f3f3f4;
+  color: #f3f3f4;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
 }
