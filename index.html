@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Bot</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+        <h2 class="head">Supreme Bot</h2>
+        <form id="dataForm" method="post">
+            <input type="text" class="inputs" placeholder="Item link" name="ItemLink">
+            <input type="text" class="inputs" placeholder="Email" name="Email">
+            <input type="text" class="inputs" placeholder="Size" name="Size">
+            <input type="text" class="inputs" placeholder="First Name" name="FirstName">
+            <input type="text" class="inputs" placeholder="Second Name" name="SecondName">
+            <input type="text" class="inputs" placeholder="Address" name="Address">
+            <input type="text" class="inputs" placeholder="City" name="City">
+            <input type="text" class="inputs" placeholder="Postcode" name="Postcode">
+            <input type="text" class="inputs" placeholder="Card Number" name="CardNumber">
+            <input type="text" class="inputs" placeholder="Phone Number" name="PhoneNumber">
+            <input type="text" class="inputs" placeholder="CVV" name="CVV" value="0">
+            <input type="text" class="inputs" placeholder="expiry" name="Expiry"value="00" >
+            <input type="text" class="inputs" placeholder="Name" name="Name">
+            <button type="submit" class="buttons" onclick="Start(event)">Start</button>
+            <button type="button" class="buttons" onclick="Stop()">Stop</button>
+        </form>
+    </div>
+</div>
 
-    <h2>Data</h2>
-    <form id="dataForm" method="post">
-        <input type="text" placeholder="Item link" name="ItemLink">
-        <input type="text" placeholder="Email" name="Email">
-        <input type="text" placeholder="Size" name="Size">
-        <input type="text" placeholder="First Name" name="FirstName">
-        <input type="text" placeholder="Second Name" name="SecondName">
-        <input type="text" placeholder="Address" name="Address">
-        <input type="text" placeholder="City" name="City">
-        <input type="text" placeholder="Postcode" name="Postcode">
-
-        <input type="text" placeholder="Card Number" name="CardNumber">
-        <input type="text" placeholder="Phone Number" name="PhoneNumber">
-        <input type="text" placeholder="CVV" name="CVV">
-        <input type="text" placeholder="expiry" name="Expiry">
-        <input type="text" placeholder="Name" name="Name">
-
-        <button type="submit" onclick="Start(event)">Start</button>
-        <button type="button" onclick="Stop()">Stop</button>
-    </form>
-    <script src="/node_modules/axios/dist/axios.min.js"></script>
-    <script src="main.js"></script>
+<script src="/node_modules/axios/dist/axios.min.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
