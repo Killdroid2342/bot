@@ -113,21 +113,11 @@ async function DeliveryPayment(page, body) {
       });
     });
 
-    // fix checkbox
-    await page.$eval(
-      'input[type="checkbox"]#accept-tos-checkbox._1mmswk96._1fragemr1._1fragemqz._1fragemr3._1fragemqx._1fragemrx._1fragemrt._1fragems1._1fragemrp._1fragemby._1fragemb9._1fragemcn._1fragemak._1fragempr._1fragem2i._1fragemqm._1fragem2d._1fragemv9._1fragemv3._1fragemvf._1fragempi._1fragemvq',
-      (e) => e.click()
+    await page.$eval('input[type="checkbox"]#accept-tos-checkbox', (e) =>
+      e.click()
     );
     console.log('clicked checkbox');
-    await page.$eval(
-      'input[type="checkbox"]#save_shipping_information._1mmswk96._1fragemr1._1fragemqz._1fragemr3._1fragemqx._1fragemrx._1fragemrt._1fragems1._1fragemrp._1fragemby._1fragemb9._1fragemcn._1fragemak._1fragempr._1fragem2i._1fragemqm._1fragem2d._1fragemv9._1fragemv3._1fragemvf._1fragempi._1fragemvq',
-      (e) => e.click()
-    );
-    console.log('clicked checkbox');
-    await page.$eval(
-      'button#checkout-pay-button.QT4by._1fragempl.rqC98._1m2hr9gc._1m2hr9ga._7QHNJ.VDIfJ.j6D1f.janiy',
-      (e) => e.click()
-    );
+    await page.$eval('button#checkout-pay-button', (e) => e.click());
     console.log('process payment');
   } catch (e) {
     console.log(e);
