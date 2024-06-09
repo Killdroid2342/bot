@@ -37,4 +37,14 @@ body {
   font-size: 20px;
   font-weight: bold;
   border-radius: 5px;
+  cursor: pointer;
+}
+.sizeLabel {
+  margin: 5px;
+  color: #f3f3f4;
+}
+
+.sizeOptions {
+  background-color: rgba(28, 29, 31, 1);
+  color: #f3f3f4;
 }
