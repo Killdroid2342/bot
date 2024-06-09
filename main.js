@@ -28,5 +28,3 @@ async function Start(event) {
     console.error('Error:', error);
   }
 }
-
-async function Stop() {}

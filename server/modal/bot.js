@@ -10,30 +10,20 @@ async function initBrowser(url) {
 
 async function AddToCart(page) {
   try {
-    await page.$eval(
-      'input[type="submit"].button.button--default.fontWeight-bold.bpS-button--s.width-100.bg-red--aa.c-white',
-      (e) => e.click()
-    );
+    await page.$eval('button.sc-dmXWDj.bsZIMV', (e) => e.click());
     console.log('Clicked');
     await page.evaluate(() => {
       return new Promise((resolve) => {
         setTimeout(resolve, 100);
       });
     });
-
-    await page.waitForSelector(
-      'a.button.button--s.c-white.width-100.display-flex.bg-red--aa'
-    );
     await page.evaluate(() => {
       return new Promise((resolve) => {
         setTimeout(resolve, 200);
       });
     });
 
-    await page.$eval(
-      'a.button.button--s.c-white.width-100.display-flex.bg-red--aa',
-      (e) => e.click()
-    );
+    await page.$eval('span.sc-dmXWDj.bFCvEm', (e) => e.click());
 
     console.log('Clicked the proceed to checkout button');
   } catch (e) {
