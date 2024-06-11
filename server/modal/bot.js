@@ -14,14 +14,15 @@ async function AddToCart(page) {
     console.log('Clicked');
     await page.evaluate(() => {
       return new Promise((resolve) => {
-        setTimeout(resolve, 100);
+        setTimeout(resolve, 50);
       });
     });
     await page.evaluate(() => {
       return new Promise((resolve) => {
-        setTimeout(resolve, 200);
+        setTimeout(resolve, 50);
       });
     });
+    await page.waitForSelector('span.sc-dmXWDj.bFCvEm');
 
     await page.$eval('span.sc-dmXWDj.bFCvEm', (e) => e.click());
 
@@ -78,25 +79,29 @@ async function DeliveryPayment(page, body) {
         setTimeout(resolve, 50);
       });
     });
-    await page.type('#number', CardNumber);
+    await page.type('#number', `_${CardNumber}`);
+
+    console.log(CardNumber, 'THIS IS CARD NUMBER');
     await page.evaluate(() => {
       return new Promise((resolve) => {
         setTimeout(resolve, 50);
       });
     });
-    await page.type('#expiry', Expiry);
+    await page.type('#expiry', `__${Expiry}`);
     await page.evaluate(() => {
       return new Promise((resolve) => {
         setTimeout(resolve, 50);
       });
     });
-    await page.type('#verification_value', CVV);
+    await page.type('#verification_value', `_${CVV}`);
+
     await page.evaluate(() => {
       return new Promise((resolve) => {
         setTimeout(resolve, 50);
       });
     });
-    await page.type('#name', Name);
+    await page.type('#name', `_${Name}`);
+
     await page.evaluate(() => {
       return new Promise((resolve) => {
         setTimeout(resolve, 50);
