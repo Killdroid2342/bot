@@ -1,1 +1,1 @@
-# This is a private web project that can scrape items from sites
+# This is a web project that can scrape items from sites
